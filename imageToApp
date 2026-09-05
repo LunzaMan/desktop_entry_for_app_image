@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import re
 import sys
 import subprocess
@@ -21,11 +19,8 @@ def executable_permission(pathfile):
     try:
         subprocess.run(["test", "-x", pathfile], check=True)
     except subprocess.CalledProcessError:
-        try:
-            subprocess.run(["sudo", "chmod", "+x", pathfile], check=True)
-        except subprocess.CalledProcessError:
-            print("Some error occured while giving executable permission to AppImage")
-            exit(1)
+        # TODO: handle error just incase
+        subprocess.run(["sudo", "chmod", "+x", pathfile], check=True)
     return
 
 
@@ -60,6 +55,7 @@ def get_app_icon(pathfile):
             userDataPath.mkdir()
 
         icon_path = icon_path.move(Path(userDataPath, icon_path.name))
+        print("i got icon path ", icon_path)
         subprocess.run(["rm", "-rf", tempDir], capture_output=True)
 
         return icon_path
@@ -89,7 +85,6 @@ StartupNotify=true
 
     applicationsDir = Path(dirs.user_data_dir, "applications")
     subprocess.run(["update-desktop-database", applicationsDir])
-    return desktopEntryPath
 
 
 def main():
@@ -110,8 +105,7 @@ def main():
     pathfile = rename_file(pathfile)
     executable_permission(pathfile)
     icon_path = get_app_icon(pathfile)
-    desktopEntryPath = create_desktop_entry(pathfile, icon_path)
-    print(desktopEntryPath)
+    create_desktop_entry(pathfile, icon_path)
 
 
 if __name__ == "__main__":
