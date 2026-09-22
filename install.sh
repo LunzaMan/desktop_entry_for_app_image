@@ -24,8 +24,8 @@ echo "Downloading $APP_NAME"
 mkdir -p "$INSTALL_DIR"
 
 curl -fL \
-  "https://github.com/$REPO/releases/latest/download/$BINARY" \ 
--o "$INSTALL_DIR/$APP_NAME"
+  "https://github.com/$REPO/releases/latest/download/$BINARY" \
+  -o "$INSTALL_DIR/$APP_NAME"
 
 sudo chmod +x "$INSTALL_DIR/$APP_NAME"
 
