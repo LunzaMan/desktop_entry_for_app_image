@@ -2,7 +2,13 @@
 
 A small script to create desktop entry for AppImages Automatically. 
 
-## Installing and Usage
+## Direct Install 
+```bash
+  curl -fsSL https://raw.githubusercontent.com/LunzaMan/desktop_entry_for_app_image/master/install.sh | sh
+```
+
+
+## Build Manually
 1. Clone the repo
 ```bash
   git clone LunzaMan/desktop_entry_for_app_image
