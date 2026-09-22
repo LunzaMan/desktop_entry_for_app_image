@@ -27,13 +27,13 @@ curl -fL \
   "https://github.com/$REPO/releases/latest/download/$BINARY" \
   -o "$INSTALL_DIR/$APP_NAME"
 
-sudo chmod +x "$INSTALL_DIR/$APP_NAME"
+chmod +x "$INSTALL_DIR/$APP_NAME"
 
 echo ""
 echo "$APP_NAME installed to $INSTALL_DIR"
 echo ""
 
-case ":$PATH" in
+case ":$PATH:" in
 *":$INSTALL_DIR:"*) ;;
 *)
   echo "$INSTALL_DIR is not in your PATH"
